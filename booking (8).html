@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>迴心塔羅｜線上占卜預約</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FFF6F8;--card:#FFFFFF;--brown:#6B3A4A;--brown2:#8A5566;--gold:#D6708C;--gold2:#FFF0F4;--line:#F3D3DC;--muted:#A8808D;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+body{font-family:'Noto Serif TC',serif;background:#F9E1E8;color:var(--brown);min-height:100vh;display:flex;justify-content:center}
+.app{width:100%;max-width:420px;background:var(--cream);min-height:100vh;padding-bottom:40px}
+header{background:linear-gradient(160deg,#FFDDE6,#FFFFFF);color:#B34F6E;text-align:center;padding:34px 20px 26px;border-bottom:2px solid var(--gold)}
+header h1{font-size:28px;letter-spacing:.3em;font-weight:700}
+header p{font-size:13px;letter-spacing:.35em;margin-top:8px;color:#C47A90}
+header .orn{font-size:12px;color:var(--gold);margin-top:10px;letter-spacing:.6em}
+.steps{display:flex;padding:18px 22px 6px;gap:6px}
+.step{flex:1;text-align:center;font-size:12px;color:var(--muted);position:relative}
+.step i{display:block;width:26px;height:26px;line-height:24px;margin:0 auto 4px;border:1px solid var(--gold);border-radius:50%;font-style:normal;font-size:13px;background:var(--cream)}
+.step.on{color:var(--brown);font-weight:700}.step.on i{background:var(--gold);color:#fff}
+.step.done i{background:var(--brown);color:var(--gold2);border-color:var(--brown)}
+.bar{height:3px;background:var(--line);margin:0 22px 16px;border-radius:3px;overflow:hidden}
+.bar b{display:block;height:100%;width:33%;background:var(--gold);transition:width .4s}
+section{padding:0 18px}.hide{display:none}
+h2{font-size:17px;margin:4px 0 12px;letter-spacing:.1em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;position:relative;transition:.25s}
+.card.sel{border-color:var(--gold);box-shadow:0 4px 16px rgba(214,112,140,.25)}
+.head{padding:16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.head h3{font-size:15px;line-height:1.5}
+.price{color:var(--gold);font-weight:700;font-size:20px;white-space:nowrap}.price small{font-size:12px}
+.orig{font-size:11px;color:var(--muted);font-weight:400;text-align:right;margin-top:2px}
+.tag{position:absolute;top:0;right:0;background:var(--gold);color:#fff;font-size:11px;padding:3px 12px;border-bottom-left-radius:10px;letter-spacing:.2em}
+.rec .head{padding-top:26px}
+.body{max-height:0;overflow:hidden;transition:max-height .35s;padding:0 16px}
+.card.sel .body{max-height:520px;padding-bottom:16px}
+.inc{font-size:13px;line-height:1.9;color:var(--brown2);margin-bottom:10px;padding-left:18px}
+.lbl{font-size:13px;color:var(--muted);margin:8px 0 6px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:1px solid var(--gold);border-radius:20px;padding:7px 14px;font-size:13px;cursor:pointer;background:var(--cream);font-family:inherit;color:var(--brown)}
+.opt.on{background:var(--brown);color:var(--gold2);border-color:var(--brown)}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:12px;font-family:inherit;font-size:16px;letter-spacing:.2em;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#E58FA6,#D6708C);color:#fff;text-align:center;text-decoration:none;margin-top:10px}
+.btn:disabled{background:#EBD3DA;color:#fff;cursor:not-allowed}
+.btn.line{background:#06C755;color:#fff}.btn.ghost{background:transparent;border:1px solid var(--brown);color:var(--brown)}
+label{display:block;font-size:13px;margin:12px 0 5px;color:var(--brown2)}label em{color:#B0452E;font-style:normal}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-family:inherit;font-size:15px;color:var(--brown)}
+.row{display:flex;gap:8px}.row input{min-width:0}
+textarea{min-height:86px;resize:vertical}input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+.pv{background:#fff;border-radius:12px;border:1px dashed var(--gold);padding:14px;font-size:13.5px;line-height:1.8;white-space:pre-wrap;word-break:break-word;font-family:inherit;color:var(--brown)}
+.pay{background:#FFE9EF;color:var(--brown);border:1px solid var(--gold);border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.9;margin:12px 0}
+.ok{text-align:center;font-size:44px;color:var(--gold);margin:6px 0}
+.note{font-size:12px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="app">
+<header><h1>迴心塔羅</h1><p>線上占卜預約</p><div class="orn">✦ ✦ ✦</div></header>
+
+<div class="steps">
+<div class="step on" id="s1"><i>1</i>選服務</div>
+<div class="step" id="s2"><i>2</i>填資料</div>
+<div class="step" id="s3"><i>3</i>完成</div>
+</div>
+<div class="bar"><b id="prog"></b></div>
+
+<!-- Step 1 -->
+<section id="p1">
+<h2>請選擇服務方案</h2>
+<div id="cards"></div>
+<button class="btn" id="next1" disabled>下一步</button>
+</section>
+
+<!-- Step 2 -->
+<section id="p2" class="hide">
+<h2>填寫預約資料</h2>
+<label>1. 你的名字或綽號 <em>*</em></label><input id="nick" placeholder="名字或綽號" autocomplete="off">
+<label>2. 你的西元生日 <em>*</em></label><input id="bday" inputmode="numeric" placeholder="例：1995/08/12">
+<label>3. 對象名字或綽號 <em>*</em>（單身看桃花可填「無」）</label><input id="onick" placeholder="名字或綽號，單身可填「無」" autocomplete="off">
+<label>4. 對象西元生日（單身可填「無」或留空）</label><input id="obday" inputmode="numeric" placeholder="例：1995/08/12，單身可留空">
+<label>5. 如何認識 / 相處現狀</label><textarea id="how" placeholder="例：朋友介紹、交友軟體。若看單身桃花，可簡述目前生活圈或期待"></textarea>
+<label>6. 認識／在一起時間（非必填，無對象可略過）</label><textarea id="time" placeholder="可彈性說明，例：認識 1 年、在一起 8 個月、分開 3 個月"></textarea>
+<label>7. 最近一次互動時間 <em>*</em></label><input id="last" placeholder="例：3 天前（無對象可填「無」）">
+<label>8. 互動狀況 <em>*</em></label><textarea id="status" placeholder="目前雙方怎麼互動、聊天頻率、態度等（無對象可填「無」）"></textarea>
+<label>9. 想詢問的問題 <em>*</em></label><textarea id="q" placeholder="請簡述你想問的問題"></textarea>
+<h2 style="margin-top:20px">LINE 訊息預覽</h2>
+<pre class="pv" id="pv1"></pre>
+<button class="btn" id="next2" disabled>送出預約</button>
+<button class="btn ghost" data-back>返回上一步</button>
+</section>
+
+<!-- Step 3 -->
+<section id="p3" class="hide">
+<div class="ok">✦</div>
+<h2 style="text-align:center" id="doneTitle">預約資料已完成</h2>
+<div class="pay" id="payBox"></div>
+<a class="btn" id="payBtn" target="_blank" rel="noopener">前往付款</a>
+<pre class="pv" id="pv2"></pre>
+<button class="btn" id="copy">一鍵複製訊息</button>
+<a class="btn line" id="addLine" target="_blank" rel="noopener">加 LINE 好友並貼上訊息</a>
+<button class="btn ghost" id="restart">重新預約</button>
+<p class="note">付款完成後，請將付款資訊與訊息一併傳送至 LINE，<br>確認後將為你安排時間。</p>
+</section>
+</div>
+
+<script>
+const BRAND='迴心塔羅', LINE_URL='https://lin.ee/XTxEna6';
+const SERVICES=[
+ {id:1,name:'單題占卜（以語音訊息發送）',price:300,pay:'https://reurl.cc/Wzo7vD',type:'form',subLabel:'請選擇解析主題',subs:['對方真實想法','感情現況走向','復合可能性','其他關係問題'],inc:['針對單一問題進行占卜解析','以語音訊息方式回覆']},
+ {id:2,name:'40分鐘深度解析',price:888,tag:'熱賣',pay:'https://reurl.cc/EYve1R',type:'form',subLabel:'請選擇解析方式',subs:['文字訊息','語音通話'],inc:['40分鐘深度牌陣解析','單身桃花時機、曖昧突破、雙方關係全方位剖析']}
+];
+const $=id=>document.getElementById(id);
+let cur=null, sub=null;
+
+function render(){
+ $('cards').innerHTML='';
+ SERVICES.forEach(s=>{
+  const d=document.createElement('div');
+  d.className='card'+(s.tag?' rec':'')+(cur===s?' sel':'');
+  d.innerHTML=(s.tag?'<div class="tag">'+s.tag+'</div>':'')+
+   `<div class="head"><h3>${s.name}</h3><div class="price"><small>NT$</small>${s.price.toLocaleString()}${s.orig?`<div class="orig">限定優惠</div>`:''}</div></div>
+    <div class="body"><ul class="inc">${s.inc.map(i=>`<li>${i}</li>`).join('')}</ul>
+    <div class="lbl">${s.subLabel}</div><div class="opts">${s.subs.map(o=>`<button class="opt${cur===s&&sub===o?' on':''}" data-o="${o}">${o}</button>`).join('')}</div></div>`;
+  d.querySelector('.head').onclick=()=>{ if(cur!==s){cur=s;sub=null;} render(); upd1(); };
+  d.querySelectorAll('.opt').forEach(b=>b.onclick=e=>{e.stopPropagation();sub=b.dataset.o;render();upd1();});
+  $('cards').appendChild(d);
+ });
+}
+function upd1(){ $('next1').disabled=!(cur&&sub); }
+
+function go(n){
+ ['p1','p2','p3'].forEach((p,i)=>$(p).classList.toggle('hide',i!==n-1));
+ [1,2,3].forEach(i=>{const e=$('s'+i);e.classList.toggle('on',i===n);e.classList.toggle('done',i<n);});
+ $('prog').style.width=(n*33.3)+'%'; window.scrollTo({top:0,behavior:'smooth'});
+}
+function buildMsg(){
+ const L=[`【${BRAND}】預約申請`,`方案：${cur.name}`,`子項目：${sub}`,`金額：NT$${cur.price}`];
+ if(cur.type==='form'){
+  const v=i=>$(i).value.trim(), g=(i,t)=>v(i)||t;
+  L.push(`本人：${g('nick','（待填）')}　生日：${g('bday','（待填）')}`);
+  L.push(`對象：${g('onick','（待填）')}${v('obday')?`　生日：${v('obday')}`:''}`);
+  if(v('how'))L.push(`如何認識／相處現狀：${v('how')}`);
+  if(v('time'))L.push(`認識／在一起時間：${v('time')}`);
+  L.push(`最近一次互動：${g('last','（待填）')}`,`互動狀況：${g('status','（待填）')}`,`想詢問的問題：${g('q','（待填）')}`);
+ }
+ L.push('','我已了解流程，付款完成後會傳送付款資訊 🙏');
+ return L.join('\n');
+}
+const REQ=['nick','bday','onick','last','status','q'];
+const ALL=REQ.concat(['obday','how','time']);
+function upd2(){
+ $('pv1').textContent=buildMsg();
+ $('next2').disabled=!REQ.every(i=>$(i).value.trim());
+}
+function finish(){
+ $('pv2').textContent=buildMsg();
+ $('payBox').innerHTML=`應付金額：<b>NT$${cur.price}</b><br>請點下方按鈕前往付款頁面`;
+ $('payBtn').href=cur.pay;
+ $('doneTitle').textContent=cur.type==='direct'?'請完成付款並傳送訊息':'預約資料已完成';
+ $('addLine').href=LINE_URL; go(3);
+}
+$('next1').onclick=()=>{ if(cur.type==='direct')finish(); else{upd2();go(2);} };
+$('next2').onclick=finish;
+document.querySelector('[data-back]').onclick=()=>go(1);
+ALL.forEach(i=>$(i).addEventListener('input',upd2));
+$('copy').onclick=async()=>{
+ const t=$('pv2').textContent,b=$('copy');
+ try{await navigator.clipboard.writeText(t);}catch(e){
+  const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();}
+ b.textContent='已複製 ✓';setTimeout(()=>b.textContent='一鍵複製訊息',2000);
+};
+$('restart').onclick=()=>{cur=null;sub=null;ALL.forEach(i=>$(i).value='');render();upd1();go(1);};
+render();upd1();upd2();
+</script>
+</body>
+</html>
